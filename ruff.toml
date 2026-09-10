@@ -1,0 +1,166 @@
+target-version = 'py312'
+line-length = 120
+extend-exclude = ['docs', 'htmlcov', '*.egg-info', 'indico-src']
+
+[lint]
+preview = true
+dummy-variable-rgx = '^(_{2,}|(_+[a-zA-Z0-9_]*[a-zA-Z0-9]+?))$' # a single `_` is already used for i18n
+
+select = [
+    'E',      # pycodestyle (errors)
+    'W',      # pycodestyle (warnings)
+    'F',      # pyflakes
+    'N',      # pep8-naming
+    'Q',      # flake8-quotes
+    'RUF',    # ruff
+    'UP',     # pyupgrade
+    'D',      # pydocstyle
+    'S',      # flake8-bandit
+    'C4',     # flake8-comprehensions
+    'INT',    # flake8-gettext
+    'LOG',    # flake8-logging
+    'G',      # flake8-logging-format
+    'B',      # flake8-bugbear
+    'builtin-variable-shadowing',   # flake8-builtins
+    'COM',    # flake8-commas
+    'T10',    # flake8-debugger
+    'EXE',    # flake8-executable
+    'ISC',    # flake8-implicit-str-concat
+    'PIE',    # flake8-pie
+    'PT',     # flake8-pytest-style
+    'RSE',    # flake8-raise
+    'unnecessary-assign', # flake8-return
+    'SIM',    # flake8-simplify
+    'TID',    # flake8-tidy-imports
+    'PGH',    # pygrep-hooks
+    'PL',     # pylint
+    'TRY',    # tryceratops
+    'PERF',   # perflint
+    'FURB',   # refurb
+]
+ignore = [
+    'missing-trailing-period',
+    'missing-whitespace-around-arithmetic-operator',
+    'lambda-assignment',
+    'error-suffix-on-exception-name',
+    'mutable-class-default',
+    'unnecessary-iterable-allocation-for-first-element',
+    'unsorted-dunder-all',
+    'missing-f-string-syntax',
+    'used-dummy-variable',
+    'non-empty-init-module',
+    'missing-blank-line-after-summary',
+    'escape-sequence-in-docstring',
+    'D1',
+    'non-imperative-mood',
+    'blank-lines-between-header-and-content',
+    'assert',
+    'request-without-timeout',
+    'suspicious-non-cryptographic-random-usage',
+    'hashlib-insecure-hash-function',
+    'suspicious-subprocess-import',
+    'suspicious-pickle-import',
+    'suspicious-xml-etree-import',
+    'subprocess-without-shell-equals-true',
+    'start-process-with-partial-path',
+    'unsafe-markup-use',
+    'assert-false',
+    'raise-without-from-inside-except',
+    'missing-trailing-comma',
+    'reimplemented-container-builtin',
+    'pytest-raises-too-broad',
+    'pytest-assert-always-false',
+    'pytest-composite-assertion',
+    'collapsible-if',
+    'needless-bool',
+    'suppressible-exception',
+    'if-else-block-instead-of-if-exp',
+    'if-with-same-arms',
+    'multiple-with-statements',
+    'import-outside-top-level',
+    'import-private-name',
+    'PLR09',
+    'too-many-arguments',
+    'magic-value-comparison',
+    'literal-membership',
+    'no-self-use',
+    'unnecessary-lambda',
+    'subprocess-run-without-check',
+    'unspecified-encoding',
+    'eq-without-hash',
+    'redefined-loop-name',
+    'raise-vanilla-class',
+    'raise-vanilla-args',
+    'try-consider-else',
+    'raise-within-try',
+    'error-instead-of-exception',
+    'try-except-in-loop',
+    'repeated-append',
+    'reimplemented-starmap',
+    'subclass-builtin',
+]
+
+extend-safe-fixes = [
+    'collection-literal-concatenation',
+    'C4',
+    'super-call-with-parameters',
+    'unnecessary-multiline-docstring',
+    'missing-trailing-period',
+    'pytest-duplicate-parametrize-test-cases',
+    'unnecessary-paren-on-raise-exception',
+    'unnecessary-assign',
+    'reimplemented-builtin',
+    'incorrect-dict-iterator',
+]
+
+[format]
+quote-style = 'single'
+
+[lint.flake8-builtins]
+builtins-ignorelist = ['id', 'format', 'input', 'type', 'credits']
+
+[lint.flake8-pytest-style]
+fixture-parentheses = false
+mark-parentheses = false
+parametrize-names-type = 'tuple'
+parametrize-values-type = 'tuple'
+parametrize-values-row-type = 'tuple'
+
+[lint.flake8-quotes]
+inline-quotes = 'single'
+multiline-quotes = 'single'
+docstring-quotes = 'double'
+avoid-escape = true
+
+[lint.pep8-naming]
+ignore-names = [
+    '_process_GET',
+    '_process_POST',
+    '_process_PATCH',
+    '_process_PUT',
+    '_process_DELETE',
+]
+classmethod-decorators = [
+    'classmethod',
+    'declared_attr',
+    'strict_classproperty',
+    'expression',
+    'comparator',
+]
+
+[lint.pydocstyle]
+convention = 'pep257'
+
+[lint.pylint]
+allow-dunder-method-names = [
+    '__table_args__',
+    '__tablename__',
+    '__clause_element__',
+]
+
+[lint.ruff]
+parenthesize-tuple-in-subscript = true
+
+[lint.per-file-ignores]
+'*/*_test.py' = ['multiple-spaces-before-operator', 'multiple-spaces-after-comma', 'multiple-spaces-before-keyword', 'invalid-function-name', 'hardcoded-password-string', 'hardcoded-password-func-arg', 'compare-to-empty-string']
+'*/migrations/*.py' = ['line-too-long', 'missing-trailing-period']

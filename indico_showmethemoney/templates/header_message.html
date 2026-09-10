@@ -1,0 +1,10 @@
+<div class="info-message-box">
+    <div class="message-text">
+        {%- if count == 1 -%}
+            {% trans %}One page in this event stays hidden until your registration payment is complete.{% endtrans %}
+        {%- else -%}
+            {% trans count=count %}{{ count }} pages in this event stay hidden until your registration payment is complete.{% endtrans %}
+        {%- endif %}
+        <a href="{{ url }}">{% trans %}Pay now{% endtrans %}</a>
+    </div>
+</div>

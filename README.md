@@ -21,9 +21,9 @@ until their registration reaches the *Completed* state.
 Requires Indico 3.3 or newer. There are no frontend assets to build.
 
 1. Get the plugin. Every tagged release attaches a wheel, which is all there is
-   to install — take the URL from the release page:
+   to install:
    ```bash
-   pip install https://github.com/<owner>/indico-showmethemoney/releases/download/v0.1.0/indico_plugin_showmethemoney-0.1.0-py3-none-any.whl
+   pip install https://github.com/adamjenkins/indico-showmethemoney/releases/download/v0.1.0/indico_plugin_showmethemoney-0.1.0-py3-none-any.whl
    ```
    To work on the plugin instead, clone this repository anywhere convenient.
 2. Activate Indico's virtualenv and install the plugin — from a clone, in

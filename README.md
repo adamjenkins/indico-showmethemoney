@@ -16,13 +16,37 @@ This plugin adds a **Require payment** switch to the menu entry's settings. With
 it on, a user whose only route into the entry is that registration form is denied
 until their registration reaches the *Completed* state.
 
+## Installation
+
+Requires Indico 3.3 or newer. There are no frontend assets to build.
+
+1. Get the plugin. Every tagged release attaches a wheel, which is all there is
+   to install — take the URL from the release page:
+   ```bash
+   pip install https://github.com/<owner>/indico-showmethemoney/releases/download/v0.1.0/indico_plugin_showmethemoney-0.1.0-py3-none-any.whl
+   ```
+   To work on the plugin instead, clone this repository anywhere convenient.
+2. Activate Indico's virtualenv and install the plugin — from a clone, in
+   editable mode:
+   ```bash
+   pip install -e .
+   # (or, on a venv managed with uv: uv pip install --no-deps -e .)
+   ```
+3. Add `showmethemoney` to `PLUGINS` in `indico.conf`, keeping any already there:
+   ```python
+   PLUGINS = {'showmethemoney'}
+   ```
+4. Apply the database migration:
+   ```bash
+   indico db --plugin showmethemoney upgrade
+   ```
+5. Restart Indico.
+
 ## Using it
 
-1. Enable `showmethemoney` in `PLUGINS` in `indico.conf` and run
-   `indico db --all-plugins upgrade`.
-2. In an event: *Layout » Menu*, edit a custom page or link, set **Protection
-   mode** to *Protected*, add the registration form to the access control list,
-   and turn on **Require payment**.
+In an event: *Layout » Menu*, edit a custom page or link, set **Protection
+mode** to *Protected*, add the registration form to the access control list,
+and turn on **Require payment**.
 
 The switch appears only for custom pages and links — the entries that have an
 access control list of their own — and only while the entry is protected in its
@@ -77,9 +101,17 @@ so re-enabling restores them.
 intact and its gates missing. Cloning is unaffected — a cloned protected entry
 starts with an empty ACL, so it admits nobody until the ACL is rebuilt.
 
-## Requirements
+## Development
 
-Indico 3.3 or newer. No frontend build, no extra runtime dependencies.
+```bash
+pip install -e .
+isort --check-only . && unbehead --check && ruff check .
+pytest tests
+```
+
+The test suite needs PostgreSQL and a `redis-server` binary on `PATH`, and reads
+`INDICO_TEST_DATABASE_URI`. Run it scoped to `tests` rather than bare: a checkout
+sitting beside an Indico source tree otherwise collects core's own conftest.
 
 ## License
 
